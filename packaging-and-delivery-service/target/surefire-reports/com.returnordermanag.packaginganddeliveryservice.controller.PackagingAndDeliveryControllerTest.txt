@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: com.returnordermanag.packaginganddeliveryservice.controller.PackagingAndDeliveryControllerTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 13.515 s <<< FAILURE! - in com.returnordermanag.packaginganddeliveryservice.controller.PackagingAndDeliveryControllerTest
+GetPackagingDeliveryChargeNegativeCountValueTest  Time elapsed: 0.36 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.MismatchedInputException: 
+No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+	at com.returnordermanag.packaginganddeliveryservice.controller.PackagingAndDeliveryControllerTest.GetPackagingDeliveryChargeNegativeCountValueTest(PackagingAndDeliveryControllerTest.java:63)
+
+GetPackagingDeliveryChargeInvalidComponentTypeTest  Time elapsed: 0.01 s  <<< ERROR!
+com.fasterxml.jackson.databind.exc.MismatchedInputException: 
+No content to map due to end-of-input
+ at [Source: (String)""; line: 1, column: 0]
+	at com.returnordermanag.packaginganddeliveryservice.controller.PackagingAndDeliveryControllerTest.GetPackagingDeliveryChargeInvalidComponentTypeTest(PackagingAndDeliveryControllerTest.java:46)
+
+GetPackagingDeliveryChargeTest  Time elapsed: 0.011 s  <<< FAILURE!
+java.lang.AssertionError: Status expected:<200> but was:<404>
+	at com.returnordermanag.packaginganddeliveryservice.controller.PackagingAndDeliveryControllerTest.GetPackagingDeliveryChargeTest(PackagingAndDeliveryControllerTest.java:28)
+
