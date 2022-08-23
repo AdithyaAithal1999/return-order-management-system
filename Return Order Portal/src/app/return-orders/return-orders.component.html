@@ -1,0 +1,86 @@
+    <div id="row" class="row">
+        <div class="col-md-12 p-3">
+            <div class="container-fluid">
+                <form [formGroup]="returnForm" (ngSubmit)="onSubmit()" >
+                    <div class="alert alert-danger" *ngIf="errorMessage">
+                        {{errorMessage}}
+                    </div>
+                    <div *ngIf="isLoading;else returnFormDiv" style="text-align: center;">
+                        <app-loading-spinner></app-loading-spinner>
+                    </div>
+<ng-template #returnFormDiv>
+                    <div class="form-group">
+                        <label  for="name">User Name</label>
+                        <input [readonly]="isLoading" type="text" class="form-control" 
+                            formControlName="name" placeholder="Enter Username"
+                            name="name" />
+                        <span *ngIf="returnFormControls.name.invalid &&
+                returnFormControls.name.dirty" style="text-align: center">
+                please provide valid username</span>
+                    </div>
+                    <div class="form-group">
+                        <label  for="contactNumber">Contact number</label>
+                        <input [readonly]="isLoading" type="text" class="form-control" 
+                            formControlName="contactNumber" placeholder="Enter your contact number"
+                            name="contactNumber" />
+                        <span *ngIf="returnFormControls.contactNumber.invalid &&
+                returnFormControls.contactNumber.dirty" style="text-align: center">
+                please provide valid contact number (eg, 9912345678)</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label  for="componentName">Component Name</label>
+                        <input [readonly]="isLoading" type="text" class="form-control" 
+                            formControlName="componentName" placeholder="Enter component name" name="componentName" />
+                        <span *ngIf="returnFormControls.componentName.invalid &&
+                        returnFormControls.componentName.dirty" style="text-align: center">
+                            Please enter valid component name
+                        </span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="componentType">Component Type</label>
+                        <select class="form-control" formControlName="componentType" name="componentType">
+                            <option value="Integral" [disabled]="isLoading" [selected]=true>
+                                Integral Item
+                            </option>
+                            <option value="Accessory" [disabled]="isLoading">
+                                Accessory
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label  for="quantity">Quantity</label>
+                        <input [readonly]="isLoading" type="number" class="form-control"
+                            formControlName="quantity" placeholder="Enter Quantity" name="quantity" />
+                        <span *ngIf="returnFormControls.quantity.invalid &&
+                        returnFormControls.quantity.dirty" style="text-align: center">
+                            Value of quantity should be between 1 and 9999
+                        </span>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center" *ngIf="isLoading">
+                        <img src="https://www.shipbob.com/wp-content/uploads/2019/12/image35.gif" style="height: 100px"
+                            alt="loading" />
+                    </div>
+                    <div class="row" *ngIf="!isLoading && !errorMessage">
+                        <button class="btn btn1 mx-auto" type="reset" (click)="resetForm()">
+                            Cancel
+                        </button>
+                       <!-- {{this.returnForm.valid}} -->
+                        <button class="btn btn2 mx-auto" type="submit" [disabled]="!returnForm.valid">
+                            Proceed
+                        </button>
+                    </div>
+
+                </ng-template>
+                <div *ngIf="errorMessage">
+                    <span style="padding-right: 1em;">{{ errorMessage }}</span>
+                    <button class="btn btn2 mx-auto" type="reset"  (click)="resetForm()">
+                        Try again
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,117 @@
+<div *ngIf="isLoading;else elseBlock" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+</div>
+
+<ng-template #elseBlock>
+   
+<table align="center"  cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;">
+    <tr>
+        <td align="center">
+            <img src="https://img.icons8.com/carbon-copy/100/000000/checked-checkbox.png" width="125" height="120" style="display: block; border: 0px;" /><br>
+            <h2 style="font-size: 30px; font-weight: 800;  color: #333333; margin: 0;">
+                Return Confirmation
+            </h2>
+        </td>
+    </tr>
+   
+    <tr>
+        <td align="left" style="padding-top: 20px;">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td width="75%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                        Return Confirmation #
+                    </td>
+                    <td width="25%" align="left" bgcolor="#eeeeee" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px;">
+                        {{returnConfirmation.requestId}}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                       Component Type
+                    </td>
+                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 15px 10px 5px 10px;">
+                       {{returnConfirmation.componentType}}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+                        Component Name
+                    </td>
+                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+                       {{returnConfirmation.componentName}}
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+                        Quantity
+                    </td>
+                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+                       {{returnConfirmation.quantiy}}
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+                       Processing Charge
+                    </td>
+                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+                        {{returnConfirmation.processingCharge}}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+                       Packaging and Delivery Charge
+                    </td>
+                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+                        {{returnConfirmation.packageAndDeliveryCharge}}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+                      Date of Delivery
+                    </td>
+                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
+                        {{returnConfirmation.dateOfDelivery}}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="left" style="padding-top: 20px;">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+                        TOTAL
+                    </td>
+                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;">
+                        {{returnConfirmation.processingCharge+returnConfirmation.packageAndDeliveryCharge}}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <div class="alert alert-danger" *ngIf="errorMessage">
+        {{errorMessage}} - <span (click)="onLater()">Please try again</span>
+    </div>
+    <div class="alert alert-success" *ngIf="successMessage">
+        {{successMessage}} - <span routerLink="/home"><button>Go to home</button> </span>
+    </div>
+
+    <tr *ngIf="!errorMessage && !successMessage">
+        <td align="left" style="padding-top: 20px;">
+            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; ">
+                       <button class="btn-lg btn-lg-success" (click)="onConfirm()">Confirm</button>
+                    </td>
+                    <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; ">
+                        <button class="btn-lg btn-lg-success" (click)="onLater()">Later</button>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</ng-template>
